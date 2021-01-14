@@ -1,0 +1,342 @@
+#%%
+
+sort = "Sorts : "
+ult = "Sort Ultime : "
+pv = "Point de Vie : "
+atm = "Attaque Magique :"
+atp = "Attaque Physique : "
+
+
+class Perso:
+
+    def __init__(self):
+        self.PV = 100
+
+
+# Création de la Classe Magicien
+class Magicien(Perso):
+    def __init__(self):
+        super().__init__()
+
+
+# Création de la Classe Voleur
+class Voleur(Perso):
+    def __init__(self):
+        super().__init__()
+        print(("Classe Voleur (WIP)"))
+        print("-----------------------")
+        self.ATK_M = 5
+        self.ATK_P = 15
+        self.sort_1 = ""
+        self.sort_2 = ""
+        self.sort_3 = ""
+        self.sort_U = ""
+
+
+# Création de la Classe Pretre
+class Pretre(Perso):
+    def __init__(self):
+        super().__init__()
+        print("Classe Pretre (WIP)")
+        print("-----------------------")
+        self.ATK_M = 11
+        self.ATK_P = 9
+        self.sort_1 = ""
+        self.sort_2 = ""
+        self.sort_3 = ""
+        self.sort_U = ""
+    # Création des différente statistique du magicien
+
+
+# Creation de la race de magicien "Elfe"
+class Elfe(Magicien):
+    def __init__(self):
+        super().__init__()
+        print("Classe Magicien Elfique")
+        print("-----------------------")
+        self.name = "Magicien Elfique"
+        self.ATK_M = 16
+        self.ATK_P = 4
+        self.sort_1 = "Foudre"  # Degat Magique +chance de stun
+        self.sort_2 = "Huldrefolk "  # Est intouchable pendant 1 tours ne peux utiliser des compétence d'attaque ou prépre une compétence (degat x2)/ utilisable tous les 3tours
+        self.sort_3 = "Meditation(WIP)"  # Entre dans un etat de trans supprime touts les alltération d'etat utilisable tous les 3tours
+        self.sort_U = "Heal ou Revive (WIP)(passif)"  # heal a hauteur de 70pv ou revive si non utilisé
+
+
+# Création de la classe efle noir
+class Elfe_Noir(Elfe, Magicien):
+    def __init__(self):
+        self.PV = 100
+        super().__init__()
+        print("Classe Magicien Elfique Noir")
+        print("-----------------------")
+        self.name = "Magicien Elfique Noir"
+        self.ATK_M = 18
+        self.ATK_P = 2
+        self.sort_1 = "Foudre Noir"  # degat magique + chance de stun
+        self.sort_2 = "Poison"  # degat magique sur 3tours
+        self.sort_3 = "siphon de vie (WIP)"  # Absobre la vitalité de l'adversaire a hauteur 40 pv sans limitation à 100 hp -> pendant 1tours
+        self.sort_U = "Necromancie (WIP)"  # Ravive l'ame d'une de ces victime et la force a se battre et lui transfert sa vitalité (15 15 60hp)
+
+
+# Creation de la race de magicien "Humain"
+class Humain(Magicien):
+    def __init__(self):
+        print("Classe Magicien Humain")
+        print("----------------")
+        super().__init__()
+        self.name = "Magicien Humain"
+        self.ATK_M = 10
+        self.ATK_P = 10
+        self.sort_1 = "Feu"  # degat magique + feu
+        self.sort_2 = "Taillade (CàC)"  # degat physique + saignement
+        self.sort_3 = "Heal(WIP)"  # +30hp max=100 /45hp si ult
+        self.sort_U = "Buff 50% des stats(WIP)"  # durée de 2 tours vie exclu
+
+
+# Création de la classe Magicien noir
+class Humain_Noir(Humain, Magicien):
+    def __init__(self):
+        self.PV = 100
+        print("Classe Magicien Noir")
+        print("----------------")
+        super().__init__()
+        self.name = "Magicien Humain Noir"
+        self.ATK_M = 10
+        self.ATK_P = 10
+        self.sort_1 = "Embrassement noir"  # degats Magique + feu
+        self.sort_2 = "Taillade empoissoné (CàC)"  # degats physique / 10 degat magique partour tour pendant 2 tours
+        self.sort_3 = "Debuff de 25% des Stats Adverse(WIP)"  # Durée de 2 tours vie exclu
+        self.sort_U = "Libération(WIP)"  # Libération du pouvoir du pacte atk boosté (atk m et p = 20 et vie réduite 50% jusqu'a la fin du combat
+
+
+# Création de la classe Mage Voleur
+class Mage_Voleur(Humain, Voleur):
+    def __init__(self):
+        super().__init__()
+        print("Classe Mage Voleur")
+        print("----------------")
+        self.ATK_M = 9
+        self.ATK_P = 11
+        self.sort_1 = "Feu"  # degat magique + feu
+        self.sort_2 = "Taillade (CàC)"  # degat physique + saignement
+        self.sort_3 = "Heal(WIP)"  # +30hp max=100 /45hp si ult
+        self.sort_U = "Brume(WIP)"  #
+
+
+class Inquisiteur(Magicien, Pretre):
+    def __init__(self):
+        super().__init__()
+        print("Classe Inquisiteur (WIP)")
+        print("----------------")
+        self.ATK_M = 15
+        self.ATK_P = 5
+        self.sort_1 = "(WIP)"
+        self.sort_2 = "(WIP)"
+        self.sort_3 = "(WIP)"
+        self.sort_U = "(WIP)"
+
+
+# Selecteur
+valid = str
+player = 0
+nbr = 2
+while player != nbr:
+    choix_race = input("Quelle Race voulez vous choisr ? (Elfe/Humain) :")
+    if choix_race == "Elfe":
+        choix_class = input("Quelle type voulez vous choisr ? (Elfe/Elfe Noir)")
+        if choix_class == "Elfe":
+            Class_Elfe = Elfe()
+            print(pv + str(Class_Elfe.PV))
+            print(atm + str(Class_Elfe.ATK_M))
+            print(atp + str(Class_Elfe.ATK_P))
+            print(sort + str(Class_Elfe.sort_1))
+            print(sort + str(Class_Elfe.sort_2))
+            print(sort + str(Class_Elfe.sort_3))
+            print(ult + str(Class_Elfe.sort_U))
+            print("<-------------------------->")
+            valid = input("Valider vous votre choix ? (oui/non) : ")
+            if valid == "oui":
+                player = player + 1
+                print("Personnage choisie")
+                if player == 1:
+                    Joueur1 = Elfe()
+
+                else:
+                    Joueur2 = Elfe()
+
+        elif choix_class == "Elfe Noir":
+
+            Class_darkElfe = Elfe_Noir()
+            print(pv + str(Class_darkElfe.PV))
+            print(atm + str(Class_darkElfe.ATK_M))
+            print(atp + str(Class_darkElfe.ATK_P))
+
+            print(sort + str(Class_darkElfe.sort_1))
+            print(sort + str(Class_darkElfe.sort_2))
+            print(sort + str(Class_darkElfe.sort_3))
+            print(ult + str(Class_darkElfe.sort_U))
+            print("<------------------------------->")
+            valid = input("Valider vous votre choix ? (oui/non) : ")
+            if valid == "oui":
+                player = player + 1
+                print("Personnage choisie")
+                if player == 1:
+                    Joueur1 = Elfe_Noir()
+
+                else:
+                    Joueur2 = Elfe_Noir()
+
+            else:  # Arret du programme si aucune race n'est reconnu
+                print("Aucune Classe Correspondente")
+                raise SystemExit
+
+    elif choix_race == "Humain":
+        choix_class = input("Quelle type voulez vous choisr ? (Magicien/Magicien Noir/Voleur)")
+        if choix_class == "Magicien":
+
+            Class_H = Humain()
+            print(pv + str(Class_H.PV))
+            print(atm + str(Class_H.ATK_M))
+            print(atp + str(Class_H.ATK_P))
+
+            print(sort + str(Class_H.sort_1))
+            print(sort + str(Class_H.sort_2))
+            print(sort + str(Class_H.sort_3))
+            print(ult + str(Class_H.sort_U))
+            print("<------------------------------->")
+            valid = input("Valider vous votre choix ? (oui/non) : ")
+            if valid == "oui":
+                player = player + 1
+                print("Personnage choisie")
+                if player == 1:
+                    Joueur1 = Humain()
+
+                else:
+                    Joueur2 = Humain()
+
+        elif choix_class == "Magicien Noir":
+
+            Class_darkH = Humain_Noir()
+            print(pv + str(Class_darkH.PV))
+            print(atm + str(Class_darkH.ATK_M))
+            print(atp + str(Class_darkH.ATK_P))
+
+            print(sort + str(Class_darkH.sort_1))
+            print(sort + str(Class_darkH.sort_2))
+            print(sort + str(Class_darkH.sort_3))
+            print(ult + str(Class_darkH.sort_U))
+            print("<------------------------------->")
+            valid = input("Valider vous votre choix ? (oui/non) : ")
+            if valid == "oui":
+                player = player + 1
+                print("Personnage choisie")
+                if player == 1:
+                    Joueur1 = Humain_Noir()
+                else:
+                    Joueur2 = Humain_Noir()
+        elif choix_class == "Mage Voleur":
+            Class_MV = Mage_Voleur()
+            print(pv + str(Class_MV.PV))
+            print(atm + str(Class_MV.ATK_M))
+            print(atp + str(Class_MV.ATK_P))
+
+            print(sort + str(Class_MV.sort_1))
+            print(sort + str(Class_MV.sort_2))
+            print(sort + str(Class_MV.sort_3))
+            print(ult + str(Class_MV.sort_U))
+            print("<------------------------------->")
+            valid = input("Valider vous votre choix ? (oui/non) : ")
+            if valid == "oui":
+                player = player + 1
+                print("Personnage choisie")
+                if player == 1:
+                    Joueur1 = Mage_Voleur()
+
+                else:
+                    Joueur2 = Mage_Voleur()
+
+        elif choix_class == "Pretre":
+            Class_p = Pretre()
+            print(pv + str(Class_p.PV))
+            print(atm + str(Class_p.ATK_M))
+            print(atp + str(Class_p.ATK_P))
+
+            print(sort + str(Class_p.sort_1))
+            print(sort + str(Class_p.sort_2))
+            print(sort + str(Class_p.sort_3))
+            print(ult + str(Class_p.sort_U))
+            print("<------------------------------->")
+            valid = input("Valider vous votre choix ? (oui/non) : ")
+            if valid == "oui":
+                player = player + 1
+                print("Personnage choisie")
+                if player == 1:
+
+                    Joueur1 = Pretre()
+                else:
+
+                    Joueur2 = Pretre()
+        elif choix_class == "Inquisiteur":
+            Class_I = Inquisiteur()
+            print(pv + str(Class_I.PV))
+            print(atm + str(Class_I.ATK_M))
+            print(atp + str(Class_I.ATK_P))
+
+            print(sort + str(Class_I.sort_1))
+            print(sort + str(Class_I.sort_2))
+            print(sort + str(Class_I.sort_3))
+            print(ult + str(Class_I.sort_U))
+            print("<------------------------------->")
+            valid = input("Valider vous votre choix ? (oui/non) : ")
+            if valid == "oui":
+                player = player + 1
+                print("Personnage choisie")
+                if player == 1:
+
+                    Joueur1 = Inquisiteur()
+                else:
+
+                   Joueur2 = Inquisiteur()
+
+        else:  # boucle du programme si aucune race n'est reconnu
+            print("Aucune Classe Correspondente")
+
+
+    else:  # Boucle du programme si aucune race n'est reconnu
+        print("Aucune race Correspondente")
+
+print("Les Joueur sont prêt...")
+print("<------------------------------->")
+player = 0
+while Joueur1.PV >= 1 or Joueur2.PV >= 1: # Tant que les pv du joueur 1 ou joueur 2  sont supérieur a 1
+    print("Joueur 1/Pv restant : " + str(Joueur1.PV))
+    choix = input("1: " + Joueur1.sort_1 + "(" + str(Joueur1.ATK_M) + ")" + " 2 : " + Joueur1.sort_2 + "(" + str(Joueur1.ATK_P) + ")")
+    if choix == "1":
+        Joueur2.PV -= Joueur1.ATK_M #reduction de la vie du joueur 2
+    elif choix == "2":
+        Joueur2.PV -= Joueur1.ATK_P #reduction de la vie du joueur 1
+
+    if Joueur2.PV <= 0:      #Sortie de la boucle while
+        break
+
+    print("Joueur 2/Pv restant : " + str(Joueur2.PV))
+    choix = input("1: " + Joueur2.sort_1 + "(" +str(Joueur2.ATK_M)+")" "2 :"  + Joueur2.sort_2 + "(" +str(Joueur2.ATK_P)+")" )
+    if choix == "1":
+        Joueur1.PV -= Joueur2.ATK_P
+    else:
+        if choix == "2":
+            Joueur1.PV -= Joueur2.ATK_M
+
+    if Joueur1.PV <= 0:     #Sortie de la boucle while
+        break
+
+if Joueur1.PV <= 0 :
+    print("Joueur 2 à gagné")
+    del Joueur1      #Suppression du joueur 1
+else:
+    print("Joueur 1 à gagné")
+    del Joueur2      #Suppression du joueur 2
+
+
+raise SystemExit #Sortie du Programme
